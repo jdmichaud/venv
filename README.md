@@ -4,8 +4,10 @@ A virtual environment creator for linux.
 Venv let you install software on your system without bloating it. It creates an *overlay* filesystem, mirroring / on which any modification, addition or deletion is written in a special folder. Once 'logged in' the virtual environment, it looks as if the modifications are made. But if you exit that virtual environment, your actual system is untouched.
 
 # Install
+```
 curl -sOL https://raw.githubusercontent.com/jdmichaud/venv/master/venv.sh
 chmod +x venv.sh
+```
 
 # How to
 ```
