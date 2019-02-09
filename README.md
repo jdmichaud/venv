@@ -11,9 +11,11 @@ chmod +x venv.sh
 
 # How to
 ```
-./venv.sh
+./venv.sh venv
 ```
-This will create a virtual environment and start a bash process into it. Any modification made after this point will not be replicated into your original filesystem but will only be visible into the virtual environment. To exit the virtual environment just exit the current bash process.
+This will create a virtual environment in the `venv` folder if it does not exists already and start a bash process into it. Any modification made after this point will not be replicated into your original filesystem but will only be visible into the virtual environment. To exit the virtual environment just exit the current bash process.
+
+Exit the bash process to exit the virtual environment.
 
 # How does it works
 Venv is leveraging several linux related technology to achieve its goal. When launched it basically does the following:
