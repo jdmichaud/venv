@@ -24,6 +24,18 @@ Venv is leveraging several linux related technology to achieve its goal. When la
 
 From that point, any modification made to the apparent root filesystem will actually be performed in the overlay.
 
+# Dependencies
+
+You will need:
+* bash
+* chroot
+* the overlay filesysyem.
+
+To check if the overlay filesystem is installed:
+```
+cat /proc/filesystems | grep overlay
+```
+
 # Contributions
 Made after multiple questions asked on various [stackexchange.com](https://stackexchange.com/):
 * [Overlayfs inside archivemount](https://unix.stackexchange.com/questions/486916/overlayfs-inside-archivemount)
