@@ -12,6 +12,9 @@ function create() {
   echo "creating environment in $VENV..."
   mkdir $VENV
   mkdir $VENV/{upper,work,mount}
+}
+
+function mount() {
   sudo mount -t overlay -o lowerdir=/,upperdir=$VENV/upper,workdir=$VENV/work overlayfs $VENV/mount
   sudo mount -t proc proc $VENV/mount/proc
   sudo mount -t sysfs sys $VENV/mount/sys
@@ -20,6 +23,15 @@ function create() {
   sudo mount --bind /dev/pts $VENV/mount/dev/pts
   # Needed for networking (/etc/resolv.conf is pointing to /run)
   sudo mount --bind /run $VENV/mount/run
+}
+
+function umount() {
+  sudo umount /tmp/rust/mount/proc 
+  sudo umount /tmp/rust/mount/sys 
+  sudo umount /tmp/rust/mount/dev/pts 
+  sudo umount /tmp/rust/mount/dev
+  sudo umount /tmp/rust/mount/run 
+  sudo umount /tmp/rust/mount/
 }
 
 if [[ $# -ne 1 ]]; then
@@ -39,13 +51,10 @@ elif [[ ! -x "$VENV" ]]; then
   create
 fi
 
+# Mounting the overlay
+mount
 echo "chrooting to $VENV..."
 sudo env HOME=/home/$USER chroot --userspec=$USER:$GROUPS $VENV/mount /bin/bash --login
 # Unmounting the overlay
-sudo umount /tmp/rust/mount/proc 
-sudo umount /tmp/rust/mount/sys 
-sudo umount /tmp/rust/mount/dev/pts 
-sudo umount /tmp/rust/mount/dev
-sudo umount /tmp/rust/mount/run 
-sudo umount /tmp/rust/mount/
+umount
 echo "exited virtual environment $VENV"
