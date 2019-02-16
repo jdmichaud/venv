@@ -8,6 +8,10 @@ Venv let you install software on your system without bloating it. It creates an 
 curl -sOL https://raw.githubusercontent.com/jdmichaud/venv/master/venv.sh
 chmod +x venv.sh
 ```
+You can also execute the script from github directly to create a virtual environment called foo:
+```
+bash <(curl -s https://raw.githubusercontent.com/jdmichaud/venv/master/venv.sh?$(date +%s)) foo
+```
 
 # How to
 ```
