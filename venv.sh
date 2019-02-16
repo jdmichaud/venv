@@ -41,4 +41,11 @@ fi
 
 echo "chrooting to $VENV..."
 sudo env HOME=/home/$USER chroot --userspec=$USER:$GROUPS $VENV/mount /bin/bash --login
+# Unmounting the overlay
+sudo umount /tmp/rust/mount/proc 
+sudo umount /tmp/rust/mount/sys 
+sudo umount /tmp/rust/mount/dev/pts 
+sudo umount /tmp/rust/mount/dev
+sudo umount /tmp/rust/mount/run 
+sudo umount /tmp/rust/mount/
 echo "exited virtual environment $VENV"
